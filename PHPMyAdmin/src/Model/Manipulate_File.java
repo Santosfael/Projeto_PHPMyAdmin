@@ -13,7 +13,7 @@ public class Manipulate_File {
 	
 	public void criete_File(String name_File, String infomation) throws IOException{
 		file = new FileWriter(new File(name_File+".txt"), true);
-		file.write(infomation);
+		file.write(infomation+"\n");
 		file.close();
 	}
 	
