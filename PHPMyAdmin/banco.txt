@@ -1,0 +1,3 @@
+t notnull, nome varchar(40))insert nome = inteiro
+insert nome = inteiro, severino
+insert name = joão
