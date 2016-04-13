@@ -29,23 +29,33 @@ public class Variables_Connection {
 				file.criete_File(nomeTable, information);
 			}
 		}
-		
-		else if((nome.equals("Select")) || (nome.equals("SELECT"))|| (nome.equals("select"))){
+		else if(nome[0].equals("Select") || nome[0].equals("SELECT") || nome[0].equals("Select")){
 			System.out.println(word_Reserved);
 		}
 		
-		else if((nome.equals("Alter ")) || (nome.equals("ALTER "))|| (nome.equals("alter "))){
+		else if(nome[0].equals("Update") || nome[0].equals("update") || nome[0].equals("UPDATE")){
 			System.out.println(word_Reserved);
 		}
 		
-		else if((nome.equals("Remove")) || (nome.equals("REMOVE"))|| (nome.equals("remove"))){
+		else if(nome[0].equals("Remove") || nome[0].equals("remove") || nome[0].equals("REMOVE")){
 			System.out.println(word_Reserved);
-
 		}
 		
-		else if((nome.equals("Insert")) || (nome.equals("INSERT"))|| (nome.equals("insert"))){
-			
-			file.write_File("banco", word_Reserved);
+		else if(nome[0].equals("Insert") || nome[0].equals("insert") || nome[0].equals("INSERT")){
+			int id = 0;
+			int valor = 0; 
+			String idFinal = "";
+			//System.out.println(word_Reserved);
+			if(nome[1].equals("Into") || nome[1].equals("into") || nome[1].equals("INTO") && nome[3].equals("(")){
+				id = Integer.parseInt(nome[4]);
+				idFinal = String.valueOf(id);
+				valor = idFinal.length();
+				for (int i = 0; i < (6-valor); i++) {
+					idFinal = "0"+ idFinal;
+				}					
+				
+			}
 		}
+		
 	}
 }
