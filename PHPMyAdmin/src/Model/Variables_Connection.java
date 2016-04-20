@@ -10,50 +10,77 @@ public class Variables_Connection {
 	}
 	
 	public void seach_Text(String word_Reserved) throws IOException{
-		String[] nome = null;
+		String[] nameCod = null;
 		String nomeTable = null;
-		String content = null;
 		String information = "";
 		Manipulate_File file = new Manipulate_File();
-		nome = word_Reserved.split(" ");
-		if(nome[0].equals("create")|| nome[0].equals("Create") || nome[0].equals("CREATE")){
-			if(nome[1].equals("Table")||nome[1].equals("TABLE") || nome[1].equals("table")){
-				nomeTable = nome[2];
-				if(nome[3].equals("(")){
+		nameCod = word_Reserved.split(" ");
+		if(nameCod[0].equals("create")|| nameCod[0].equals("Create") || nameCod[0].equals("CREATE")){
+			if(nameCod[1].equals("Table")||nameCod[1].equals("TABLE") || nameCod[1].equals("table")){
+				nomeTable = nameCod[2];
+				if(nameCod[3].equals("(")){
 					System.out.println("Entrei");
-					for (int i = 4; i < nome.length-1; i++) {
-						information += nome[i]+" ";
+					for (int i = 4; i < nameCod.length-1; i++) {
+						information += nameCod[i]+" ";
 						///System.out.print(information);
 					}
 				}
 				file.criete_File(nomeTable, information);
 			}
 		}
-		else if(nome[0].equals("Select") || nome[0].equals("SELECT") || nome[0].equals("Select")){
+		else if(nameCod[0].equals("Select") || nameCod[0].equals("SELECT") || nameCod[0].equals("select")){
+			Select informations = new Select();
+			String dates = "";
+			for (int i = 1; i < nameCod.length; i++) {
+				dates +=nameCod[i];
+			}
+			informations.takeInformation(dates);
+		}
+		
+		else if(nameCod[0].equals("Update") || nameCod[0].equals("update") || nameCod[0].equals("UPDATE")){
 			System.out.println(word_Reserved);
 		}
 		
-		else if(nome[0].equals("Update") || nome[0].equals("update") || nome[0].equals("UPDATE")){
+		else if(nameCod[0].equals("Remove") || nameCod[0].equals("remove") || nameCod[0].equals("REMOVE")){
 			System.out.println(word_Reserved);
 		}
 		
-		else if(nome[0].equals("Remove") || nome[0].equals("remove") || nome[0].equals("REMOVE")){
-			System.out.println(word_Reserved);
-		}
-		
-		else if(nome[0].equals("Insert") || nome[0].equals("insert") || nome[0].equals("INSERT")){
+		else if(nameCod[0].equals("Insert") || nameCod[0].equals("insert") || nameCod[0].equals("INSERT")){
 			int id = 0;
-			int valor = 0; 
+			int value = 0; 
 			String idFinal = "";
 			//System.out.println(word_Reserved);
-			if(nome[1].equals("Into") || nome[1].equals("into") || nome[1].equals("INTO") && nome[3].equals("(")){
-				id = Integer.parseInt(nome[4]);
-				idFinal = String.valueOf(id);
-				valor = idFinal.length();
-				for (int i = 0; i < (6-valor); i++) {
-					idFinal = "0"+ idFinal;
-				}					
+			if(nameCod[1].equals("Into") || nameCod[1].equals("into") || nameCod[1].equals("INTO")){
+				String informationFile;
+				String takeValue = "";
+				int cont = 0;
+				Manipulate_File file1 = new Manipulate_File();
+				Insert insert = new Insert();
 				
+				informationFile = file1.readText(nameCod[2]+".txt");
+				System.out.println(information);
+				
+				for (int i = 3; i < nameCod.length; i++) {
+					if((nameCod[i].equals("VALUES")) || (nameCod[i].equals("Values")) || (nameCod[i].equals("values"))){
+						takeValue = nameCod[i];
+						cont = i;
+					}
+				}
+				//System.out.println("Nome: "+takeValue+", posicao: "+cont);
+				if((nameCod[cont].equals("VALUES")) || (nameCod[cont].equals("Values")) || (nameCod[cont].equals("values"))){
+					
+					for (int i = cont+2; i < nameCod.length-1; i++) {
+						idFinal += nameCod[i];
+					}
+					
+					//id = Integer.parseInt(nameCod[cont+2]);
+					//idFinal = String.valueOf(id);
+					//value = idFinal.length();
+					//for (int i = 0; i < (6-value); i++) {
+					//	idFinal = "0"+ idFinal;
+					//}
+				}
+				insert.informationFile(informationFile, idFinal);
 			}
 		}
 		
