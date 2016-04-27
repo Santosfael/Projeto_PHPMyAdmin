@@ -24,7 +24,7 @@ public class Manipulate_File {
 	public void write_File(String name_File, String text) throws IOException{
 		System.out.println("Estou aqui");
 		file = new FileWriter(new File(name_File+".txt"), true);
-		file.write("\n"+text);
+		file.write(text);
 		file.close();
 	}
 	

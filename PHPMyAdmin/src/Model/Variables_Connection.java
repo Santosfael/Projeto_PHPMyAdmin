@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class Variables_Connection {
 	//private String word_Reserved;
+	Manipulate_File file = new Manipulate_File();
 	
 	public Variables_Connection(){
 		//this.word_Reserved = word_Reserved;
@@ -13,13 +14,15 @@ public class Variables_Connection {
 		String[] nameCod = null;
 		String nomeTable = null;
 		String information = "";
-		Manipulate_File file = new Manipulate_File();
+		
+		Insert catchDate = new Insert();
 		nameCod = word_Reserved.split(" ");
+		//System.out.println();
 		if(nameCod[0].equals("create")|| nameCod[0].equals("Create") || nameCod[0].equals("CREATE")){
 			if(nameCod[1].equals("Table")||nameCod[1].equals("TABLE") || nameCod[1].equals("table")){
 				nomeTable = nameCod[2];
 				if(nameCod[3].equals("(")){
-					System.out.println("Entrei");
+					//System.out.println("Entrei");
 					for (int i = 4; i < nameCod.length-1; i++) {
 						information += nameCod[i]+" ";
 						///System.out.print(information);
@@ -58,7 +61,7 @@ public class Variables_Connection {
 				Insert insert = new Insert();
 				
 				informationFile = file1.readText(nameCod[2]+".txt");
-				System.out.println(information);
+				//System.out.println(information);
 				
 				for (int i = 3; i < nameCod.length; i++) {
 					if((nameCod[i].equals("VALUES")) || (nameCod[i].equals("Values")) || (nameCod[i].equals("values"))){
@@ -80,7 +83,8 @@ public class Variables_Connection {
 					//	idFinal = "0"+ idFinal;
 					//}
 				}
-				insert.informationFile(informationFile, idFinal);
+				insert.informationFile(informationFile, word_Reserved);
+				catchDate.catchData(word_Reserved);
 			}
 		}
 		

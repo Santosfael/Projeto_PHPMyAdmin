@@ -1,0 +1,1 @@
+id int not null, marca char(10) not null, placa varchar not null 

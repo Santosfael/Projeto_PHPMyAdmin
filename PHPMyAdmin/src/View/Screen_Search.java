@@ -2,6 +2,7 @@ package View;
 
 import java.io.IOException;
 
+import Model.PutSpace;
 import Model.Variables_Connection;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,7 +16,8 @@ import javafx.stage.Stage;
 
 public class Screen_Search extends Application{
 	private VBox root = new VBox(20);
-	Variables_Connection information = new Variables_Connection();
+	//Variables_Connection information = new Variables_Connection();
+	PutSpace put_Space = new PutSpace();
 	private TextArea text_Search = new TextArea();
 	private Button button_Run = new Button("Executar");
 	private Scene scene_Search = new Scene(root, 600, 420);
@@ -47,7 +49,9 @@ public class Screen_Search extends Application{
 				
 				//information.setWord_Reserved(text_Search.getText());
 				try {
-					information.seach_Text(text_Search.getText());
+					
+					put_Space.catchData(text_Search.getText());
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

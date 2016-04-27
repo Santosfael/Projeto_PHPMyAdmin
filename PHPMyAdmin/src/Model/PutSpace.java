@@ -1,27 +1,23 @@
 package Model;
 
-public class Insert {
-	public Insert(){
+import java.io.IOException;
+
+public class PutSpace {
+	
+	Variables_Connection information = new Variables_Connection();
+	
+	public PutSpace(){
 		
 	}
 	
-	public void informationFile(String information, String text){
-		
-		if(information != null){
-			System.out.println("Cabeçario tabela: "+information+", informação: "+text);
-		}
-		else{
-			System.out.println("Tabela informada não existe");
-		}
-	}
-	
-	public void catchData(String text){
+	public void catchData(String text) throws IOException{
 		String teste = "";
 		String[] teste1 = null; 
 		for (int i = 0; i < text.length(); i++) {
+			//teste +=text.charAt(i);
 			
 			if((text.charAt(i) == '(')){
-				teste += text.charAt(i)+" ";
+				teste += " "+text.charAt(i)+" ";
 			}
 			
 			else if((text.charAt(i) == ')')){
@@ -35,14 +31,14 @@ public class Insert {
 			teste += text.charAt(i);
 			}
 		}
-		System.out.println("Texto: "+teste);
+		
+		information.seach_Text(teste);
+		
+		//System.out.println("Texto: "+teste);
 		
 		teste1 = teste.split(" ");
 		for (int i = 0; i < teste1.length; i++) {
-			System.out.print(teste1[i]);
+			//System.out.print(teste1[i]);
 		}
-		
-		
-		//return text;
 	}
 }
