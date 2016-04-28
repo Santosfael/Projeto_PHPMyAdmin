@@ -11,21 +11,21 @@ public class Variables_Connection {
 	}
 	
 	public void seach_Text(String word_Reserved) throws IOException{
+		String idFinal = "";
+		String takeValue = "";
+		
 		String[] nameCod = null;
 		String nomeTable = null;
-		String information = "";
+		String information = "";	
 		
-		Insert catchDate = new Insert();
 		nameCod = word_Reserved.split(" ");
-		//System.out.println();
+		
 		if(nameCod[0].equals("create")|| nameCod[0].equals("Create") || nameCod[0].equals("CREATE")){
 			if(nameCod[1].equals("Table")||nameCod[1].equals("TABLE") || nameCod[1].equals("table")){
 				nomeTable = nameCod[2];
 				if(nameCod[3].equals("(")){
-					//System.out.println("Entrei");
 					for (int i = 4; i < nameCod.length-1; i++) {
 						information += nameCod[i]+" ";
-						///System.out.print(information);
 					}
 				}
 				file.criete_File(nomeTable, information);
@@ -49,19 +49,19 @@ public class Variables_Connection {
 		}
 		
 		else if(nameCod[0].equals("Insert") || nameCod[0].equals("insert") || nameCod[0].equals("INSERT")){
-			int id = 0;
-			int value = 0; 
-			String idFinal = "";
-			//System.out.println(word_Reserved);
+			
+			
+			
+			
 			if(nameCod[1].equals("Into") || nameCod[1].equals("into") || nameCod[1].equals("INTO")){
 				String informationFile;
-				String takeValue = "";
+				
 				int cont = 0;
 				Manipulate_File file1 = new Manipulate_File();
 				Insert insert = new Insert();
 				
 				informationFile = file1.readText(nameCod[2]+".txt");
-				//System.out.println(information);
+				
 				
 				for (int i = 3; i < nameCod.length; i++) {
 					if((nameCod[i].equals("VALUES")) || (nameCod[i].equals("Values")) || (nameCod[i].equals("values"))){
@@ -69,7 +69,7 @@ public class Variables_Connection {
 						cont = i;
 					}
 				}
-				//System.out.println("Nome: "+takeValue+", posicao: "+cont);
+				
 				if((nameCod[cont].equals("VALUES")) || (nameCod[cont].equals("Values")) || (nameCod[cont].equals("values"))){
 					
 					for (int i = cont+2; i < nameCod.length-1; i++) {
@@ -84,7 +84,6 @@ public class Variables_Connection {
 					//}
 				}
 				insert.informationFile(informationFile, word_Reserved);
-				catchDate.catchData(word_Reserved);
 			}
 		}
 		

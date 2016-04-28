@@ -7,16 +7,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Manipulate_File {
-	//private String text;
+	
 	FileWriter file;
-	//private String nameFile = "Cliente.txt";
+	
 	public Manipulate_File(){
 		
 	}
 	
 	public void criete_File(String name_File, String infomation) throws IOException{
 		file = new FileWriter(new File(name_File+".txt"), true);
-		//nameFile = name_File+".txt";
 		file.write(infomation+"\n");
 		file.close();
 	}

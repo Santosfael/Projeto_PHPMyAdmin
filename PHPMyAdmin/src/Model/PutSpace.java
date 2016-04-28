@@ -11,34 +11,25 @@ public class PutSpace {
 	}
 	
 	public void catchData(String text) throws IOException{
-		String teste = "";
-		String[] teste1 = null; 
+		String getText = "";
 		for (int i = 0; i < text.length(); i++) {
-			//teste +=text.charAt(i);
-			
+
 			if((text.charAt(i) == '(')){
-				teste += " "+text.charAt(i)+" ";
+				getText += " "+text.charAt(i)+" ";
 			}
 			
 			else if((text.charAt(i) == ')')){
 				 
-				teste += " " + text.charAt(i);
+				getText += " " + text.charAt(i);
 			}
 			else if(text.charAt(i) == ','){
-				teste += " "+text.charAt(i)+" ";
+				getText += " "+text.charAt(i)+" ";
 			}
 			else{
-			teste += text.charAt(i);
+				getText += text.charAt(i);
 			}
 		}
 		
-		information.seach_Text(teste);
-		
-		//System.out.println("Texto: "+teste);
-		
-		teste1 = teste.split(" ");
-		for (int i = 0; i < teste1.length; i++) {
-			//System.out.print(teste1[i]);
-		}
+		information.seach_Text(getText);
 	}
 }
