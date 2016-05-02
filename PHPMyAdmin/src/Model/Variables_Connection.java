@@ -33,10 +33,10 @@ public class Variables_Connection {
 		}
 		else if(nameCod[0].equals("Select") || nameCod[0].equals("SELECT") || nameCod[0].equals("select")){
 			Select informations = new Select();
-			String dates = "";
-			for (int i = 1; i < nameCod.length; i++) {
-				dates +=nameCod[i];
-			}
+			String dates = word_Reserved;
+			//for (int i = 1; i < nameCod.length; i++) {
+			//	dates +=nameCod[i];
+			//}
 			informations.takeInformation(dates);
 		}
 		
@@ -60,7 +60,7 @@ public class Variables_Connection {
 				Manipulate_File file1 = new Manipulate_File();
 				Insert insert = new Insert();
 				
-				informationFile = file1.readText(nameCod[2]+".txt");
+				informationFile = file1.readText(nameCod[2]+".txt",2);
 				
 				
 				for (int i = 3; i < nameCod.length; i++) {

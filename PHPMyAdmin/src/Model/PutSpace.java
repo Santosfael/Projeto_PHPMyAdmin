@@ -25,6 +25,11 @@ public class PutSpace {
 			else if(text.charAt(i) == ','){
 				getText += " "+text.charAt(i)+" ";
 			}
+			
+			else if(text.charAt(i) == '\"'){
+				getText += " "+text.charAt(i)+" ";
+			}
+			
 			else{
 				getText += text.charAt(i);
 			}

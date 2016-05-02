@@ -13,7 +13,7 @@ public class Insert {
 	public void informationFile(String information, String text) throws IOException{
 		String[] get_Text = null, get_Information = null;
 		String dataInformation = "", nameFile = "";
-		int cont=0, id, value, contAux = 0, sizeChar;
+		int cont=0, id, value, contAux = 0;
 		
 		
 		get_Text = text.split(" ");
@@ -43,7 +43,7 @@ public class Insert {
 				}
 			}
 			if((get_Text[cont].equals("VALUES")) || (get_Text[cont].equals("Values")) || (get_Text[cont].equals("values"))){
-				
+				int j = 0, cont1 = 0, cont2 = 0;
 				id = Integer.parseInt(get_Text[cont+3]);
 				dataInformation = String.valueOf(id);
 				value = dataInformation.length();
@@ -51,15 +51,26 @@ public class Insert {
 					dataInformation = "0"+ dataInformation;
 					contAux++;
 				}
-				
-				for (int i = contAux+cont; i < get_Text.length-1; i++) {
+				int aux2 = contAux + cont;
+				for (int i = aux2; i < get_Text.length-1; i++) {
 					if(get_Text[i].equals(",")){
 					
 					}
-					else{
-						dataInformation += " "+get_Text[i];
+					else if(get_Text[i].equals("\"")){
+						cont1++;
+					}
+
+					if((cont1 > 0) && (!get_Text[i].equals("\""))){
+						cont2++;
+						if(cont2 == 1){
+							dataInformation += get_Text[i];
+						}
+						else{
+							dataInformation += " "+get_Text[i];
+						}
 					}
 				}
+				///cont1 = 0;
 				//System.out.println(dataInformation);
 				white_file.write_File(nameFile, dataInformation);
 			}

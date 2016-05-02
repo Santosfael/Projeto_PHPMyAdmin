@@ -30,7 +30,7 @@ public class Screen_Result extends Application{
 		
 		root.setAlignment(Pos.TOP_CENTER);
 		
-		Label label_Title = new Label("InformaÃ§Ãµes do resultado");
+		Label label_Title = new Label("Informações do resultado");
 		label_Title.setFont(new Font("Arial",20));
 		
 		table_View.setVisible(true);
@@ -39,7 +39,7 @@ public class Screen_Result extends Application{
 		
 		TableColumn colunn_ID = new TableColumn<>("ID");
 		TableColumn colunn_Nome = new TableColumn<>("Nome");
-		TableColumn colunn_Info = new TableColumn<>("InformaÃ§Ã£o");
+		TableColumn colunn_Info = new TableColumn<>("Informalção");
 		
 		//Fim das Colunas
 		 

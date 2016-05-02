@@ -21,24 +21,39 @@ public class Manipulate_File {
 	}
 	
 	public void write_File(String name_File, String text) throws IOException{
-		//System.out.println("Estou aqui");
+		System.out.println("Estou aqui");
 		file = new FileWriter(new File(name_File+".txt"), true);
 		file.write(text);
 		file.close();
 	}
 	
-	public String readText(String nameFile) throws IOException{	
+	public String readText(String nameFile, int numClass) throws IOException{	
 		String msg = null;
-		File arquivo = new File(nameFile);
-		if(arquivo.exists()){
-			FileReader read = new FileReader(nameFile);
-			BufferedReader readFile = new BufferedReader(read);
-		
-			msg = readFile.readLine();
-			readFile.close();
+		int i = 0;
+		if(numClass == 1){
+			try {
+				FileReader read = new FileReader(nameFile);
+				BufferedReader readFile = new BufferedReader(read);
+				msg = readFile.readLine();
+				while (msg != null) {
+					//System.out.println(msg);
+					msg = readFile.readLine();
+					return msg;
+				}
+				readFile.close();
+			} catch (Exception e) {
+				System.err.printf("Erro ao abrir o arquivo: %s.\n",e.getMessage());
+			}
 		}
 		else{
-			System.out.println();;
+			try {
+				FileReader read = new FileReader(nameFile);
+				BufferedReader readFile = new BufferedReader(read);
+				msg = readFile.readLine();
+				readFile.close();
+			} catch (Exception e) {
+				System.err.printf("Erro ao abrir o arquivo: %s.\n",e.getMessage());
+			}
 		}
 		return msg;
 	}
