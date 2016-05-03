@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class Variables_Connection {
 	//private String word_Reserved;
+	private int return_Error = 0; 
 	Manipulate_File file = new Manipulate_File();
 	
 	public Variables_Connection(){
@@ -28,7 +29,13 @@ public class Variables_Connection {
 						information += nameCod[i]+" ";
 					}
 				}
+				else{
+					return_Error = 1;
+				}
 				file.criete_File(nomeTable, information);
+			}
+			else{
+				return_Error = 1;
 			}
 		}
 		else if(nameCod[0].equals("Select") || nameCod[0].equals("SELECT") || nameCod[0].equals("select")){
@@ -49,9 +56,6 @@ public class Variables_Connection {
 		}
 		
 		else if(nameCod[0].equals("Insert") || nameCod[0].equals("insert") || nameCod[0].equals("INSERT")){
-			
-			
-			
 			
 			if(nameCod[1].equals("Into") || nameCod[1].equals("into") || nameCod[1].equals("INTO")){
 				String informationFile;
@@ -85,7 +89,17 @@ public class Variables_Connection {
 				}
 				insert.informationFile(informationFile, word_Reserved);
 			}
+			else{
+				return_Error = 1;
+			}
 		}
-		
+		else{
+			return_Error = 1;
+		}
+		System.out.println(return_Error);
+	}
+	
+	public int returnError(){
+		return return_Error;
 	}
 }
