@@ -21,7 +21,7 @@ public class Manipulate_File {
 	}
 	
 	public void write_File(String name_File, String text) throws IOException{
-		System.out.println("Estou aqui");
+		
 		file = new FileWriter(new File(name_File+".txt"), true);
 		file.write(text);
 		file.close();
@@ -36,7 +36,6 @@ public class Manipulate_File {
 				BufferedReader readFile = new BufferedReader(read);
 				msg = readFile.readLine();
 				while (msg != null) {
-					//System.out.println(msg);
 					msg = readFile.readLine();
 					return msg;
 				}

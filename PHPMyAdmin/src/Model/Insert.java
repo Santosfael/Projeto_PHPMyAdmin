@@ -3,16 +3,13 @@ package Model;
 import java.io.IOException;
 
 public class Insert {
-	int id;
+	
+	int valor = 0;
+	
 	Manipulate_File white_file = new Manipulate_File();
 	
 	public Insert(){
-		id++;
-	}
-	
-	public void idPush(int id1){
-		System.out.println("Id:"+id1);
-		id = id1;
+		
 	}
 	
 	public void informationFile(String information, String text) throws IOException{
@@ -24,13 +21,12 @@ public class Insert {
 		
 		
 		get_Text = text.split(" ");
-		get_Information = information.split(" ");
+		//get_Information = information.split(" ");
 		
 		if((information != null) && (text != null)){
-			
-			System.out.println("ID:"+id);
 			nameFile = get_Text[2];
-			System.out.println("nome da tabela: "+nameFile);
+			//if(get_Text[2].equalsIgnoreCase("cliente"))
+			//System.out.println("nome da tabela: "+nameFile);
 			//System.out.println("Cabeçario tabela: "+information+", informação: "+text);
 			/*for (int i = 0; i < get_Information.length; i++) {
 				if((get_Information[i].equals("char"))|| (get_Information[i].equals("Char")) || (get_Information[i].equals("CHAR"))){
@@ -53,12 +49,11 @@ public class Insert {
 			}
 			if((get_Text[cont].equals("VALUES")) || (get_Text[cont].equals("Values")) || (get_Text[cont].equals("values"))){
 				int j = 0, cont1 = 0, cont2 = 0;
-				//id = Integer.parseInt(get_Text[cont+3]);
-				dataInformation = String.valueOf(id);
+				dataInformation = String.valueOf(PutSpace.id);
 				value = dataInformation.length();
 				for (int i = 0; i < (6-value); i++) {
 					dataInformation = "0"+ dataInformation;
-					//contAux++;
+					
 				}
 				
 				for (int i = cont; i < get_Text.length-1; i++) {
@@ -75,12 +70,15 @@ public class Insert {
 							dataInformation += get_Text[i];
 						}
 						else{
+
 							dataInformation += " "+get_Text[i];
+							
 						}
 					}
+					else{
+						dataInformation += "";
+					}
 				}
-				///cont1 = 0;
-				//System.out.println(dataInformation);
 				white_file.write_File(nameFile, dataInformation);
 				
 			}

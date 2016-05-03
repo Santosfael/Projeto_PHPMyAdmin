@@ -30,16 +30,14 @@ public class Screen_Result extends Application{
 		
 		root.setAlignment(Pos.TOP_CENTER);
 		
-		Label label_Title = new Label("Informações do resultado");
+		Label label_Title = new Label("Informaï¿½ï¿½es do resultado");
 		label_Title.setFont(new Font("Arial",20));
 		
 		table_View.setVisible(true);
 		
-		//Colunas da Tabela
-		
 		TableColumn colunn_ID = new TableColumn<>("ID");
 		TableColumn colunn_Nome = new TableColumn<>("Nome");
-		TableColumn colunn_Info = new TableColumn<>("Informalção");
+		TableColumn colunn_Info = new TableColumn<>("Informalï¿½ï¿½o");
 		
 		//Fim das Colunas
 		 

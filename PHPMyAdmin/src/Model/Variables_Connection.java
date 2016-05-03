@@ -3,8 +3,7 @@ package Model;
 import java.io.IOException;
 
 public class Variables_Connection {
-	//private String word_Reserved;
-	private int return_Error = 0; 
+	
 	Manipulate_File file = new Manipulate_File();
 	
 	public Variables_Connection(){
@@ -21,24 +20,18 @@ public class Variables_Connection {
 		
 		nameCod = word_Reserved.split(" ");
 		
-		if(nameCod[0].equals("create")|| nameCod[0].equals("Create") || nameCod[0].equals("CREATE")){
-			if(nameCod[1].equals("Table")||nameCod[1].equals("TABLE") || nameCod[1].equals("table")){
+		if(nameCod[0].equalsIgnoreCase("create")){
+			if(nameCod[1].equalsIgnoreCase("Table")){
 				nomeTable = nameCod[2];
 				if(nameCod[3].equals("(")){
 					for (int i = 4; i < nameCod.length-1; i++) {
 						information += nameCod[i]+" ";
 					}
 				}
-				else{
-					return_Error = 1;
-				}
 				file.criete_File(nomeTable, information);
 			}
-			else{
-				return_Error = 1;
-			}
 		}
-		else if(nameCod[0].equals("Select") || nameCod[0].equals("SELECT") || nameCod[0].equals("select")){
+		else if(nameCod[0].equalsIgnoreCase("Select")){
 			Select informations = new Select();
 			String dates = word_Reserved;
 			//for (int i = 1; i < nameCod.length; i++) {
@@ -47,59 +40,42 @@ public class Variables_Connection {
 			informations.takeInformation(dates);
 		}
 		
-		else if(nameCod[0].equals("Update") || nameCod[0].equals("update") || nameCod[0].equals("UPDATE")){
+		else if(nameCod[0].equalsIgnoreCase("Update")){
 			System.out.println(word_Reserved);
 		}
 		
-		else if(nameCod[0].equals("Remove") || nameCod[0].equals("remove") || nameCod[0].equals("REMOVE")){
+		else if(nameCod[0].equalsIgnoreCase("Remove")){
 			System.out.println(word_Reserved);
 		}
 		
-		else if(nameCod[0].equals("Insert") || nameCod[0].equals("insert") || nameCod[0].equals("INSERT")){
+		else if(nameCod[0].equalsIgnoreCase("Insert")){
 			
-			if(nameCod[1].equals("Into") || nameCod[1].equals("into") || nameCod[1].equals("INTO")){
+			if(nameCod[1].equalsIgnoreCase("Into")){
 				String informationFile;
 				
 				int cont = 0;
 				Manipulate_File file1 = new Manipulate_File();
 				Insert insert = new Insert();
+				String codName = nameCod[2]+".txt";
 				
-				informationFile = file1.readText(nameCod[2]+".txt",2);
-				
-				
+					informationFile = file1.readText(nameCod[2]+".txt",2);
+
 				for (int i = 3; i < nameCod.length; i++) {
-					if((nameCod[i].equals("VALUES")) || (nameCod[i].equals("Values")) || (nameCod[i].equals("values"))){
+					if(nameCod[i].equalsIgnoreCase("VALUES")){
 						takeValue = nameCod[i];
 						cont = i;
 					}
 				}
 				
-				if((nameCod[cont].equals("VALUES")) || (nameCod[cont].equals("Values")) || (nameCod[cont].equals("values"))){
+				if(nameCod[cont].equalsIgnoreCase("VALUES")){
 					
 					for (int i = cont+2; i < nameCod.length-1; i++) {
 						idFinal += nameCod[i];
 					}
 					
-					//id = Integer.parseInt(nameCod[cont+2]);
-					//idFinal = String.valueOf(id);
-					//value = idFinal.length();
-					//for (int i = 0; i < (6-value); i++) {
-					//	idFinal = "0"+ idFinal;
-					//}
 				}
 				insert.informationFile(informationFile, word_Reserved);
 			}
-			else{
-				return_Error = 1;
-			}
 		}
-		else{
-			return_Error = 1;
-		}
-		System.out.println(return_Error);
-	}
-	
-	public int returnError(){
-		return return_Error;
 	}
 }

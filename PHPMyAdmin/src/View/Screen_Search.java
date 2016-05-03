@@ -22,8 +22,6 @@ public class Screen_Search extends Application{
 	PutSpace put_Space = new PutSpace();
 	Variables_Connection returnError = new Variables_Connection();
 	
-	private int return_Error;
-	
 	private TextArea text_Search = new TextArea();
 	private Button button_Run = new Button("Executar");
 	private Label lbError = new Label("Erro de Sintaxe");
@@ -44,54 +42,53 @@ public class Screen_Search extends Application{
 		button_Run.setTranslateX(200);
 		button_Run.setTranslateY(100);
 		
-		root.getChildren().addAll(text_Search, button_Run);
-		
-		
-		stage_Search.setScene(scene_Search);
-		stage_Search.show();
-		
-		//if(testRequest[0].equals("insert")){
-			button_Run.setOnAction(new EventHandler<ActionEvent>() {
+		button_Run.setOnAction(new EventHandler<ActionEvent>() {
 				
-				@Override
-				public void handle(ActionEvent event) {
-					String[] testRequest = text_Search.getText().split(" ");
-	
-					Screen_Result screen_Result = new Screen_Result();
+			@Override
+			public void handle(ActionEvent event) {
+				String[] testRequest = text_Search.getText().split(" ");
+
+				Screen_Result screen_Result = new Screen_Result();
 					
-					//information.setWord_Reserved(text_Search.getText());
-					try {
+				try {
 						
-						put_Space.catchData(text_Search.getText());
-						return_Error = returnError.returnError();
+					put_Space.catchData(text_Search.getText());
 								
-					} catch (IOException e1) {
+				} catch (IOException e1) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					//System.out.println(return_Error);
-					if(testRequest[0].equals("insert")){
+					e1.printStackTrace();
+				}
+				
+				if(testRequest[0].equalsIgnoreCase("insert") || (testRequest[0].equalsIgnoreCase("create"))){
 						
-						root.getChildren().clear();
-						root.getChildren().addAll(text_Search, button_Run);
-						stage_Search.show();
-					}
-					if(return_Error == 1){
-						root.getChildren().clear();
-						root.getChildren().addAll(text_Search, lbError, button_Run);
-						stage_Search.show();
-					}
-					else{
-						try {
-							screen_Result.start(stage_Search);
-						} catch (Exception e) {
+					root.getChildren().clear();
+					lbError.setText("Informação Adicionada com sucesso");
+					root.getChildren().addAll(text_Search, lbError,button_Run);
+					stage_Search.show();
+				}
+				else if((!testRequest[0].equalsIgnoreCase("create")) || (!testRequest[0].equalsIgnoreCase("select")) ||
+						(!testRequest[0].equalsIgnoreCase("update")) || (!testRequest[0].equalsIgnoreCase("remove")) ||
+						(!testRequest[0].equalsIgnoreCase("insert")) || (!testRequest[1].equalsIgnoreCase("table")) ||
+						(!testRequest[0].equalsIgnoreCase("into"))){
+					root.getChildren().clear();
+					root.getChildren().addAll(text_Search, lbError,button_Run);
+					stage_Search.show();
+				}
+				else{
+					try {
+						screen_Result.start(stage_Search);
+					} catch (Exception e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						e.printStackTrace();
 					}
 				}
-			});
-		//}
+			}
+		});
+		
+		root.getChildren().clear();
+		root.getChildren().addAll(text_Search, button_Run);		
+		stage_Search.setScene(scene_Search);
+		stage_Search.show();
 	}
 
 }

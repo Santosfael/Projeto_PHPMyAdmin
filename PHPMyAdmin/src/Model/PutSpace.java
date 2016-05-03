@@ -3,7 +3,15 @@ package Model;
 import java.io.IOException;
 
 public class PutSpace {
-	private int id = 0;
+	public static int id = 0;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		PutSpace.id = id;
+	}
+
 	Variables_Connection information = new Variables_Connection();
 	Insert insert = new Insert();
 	
@@ -37,7 +45,6 @@ public class PutSpace {
 			}
 		}
 		
-		insert.idPush(id);
 		information.seach_Text(getText);
 		
 	}
