@@ -45,8 +45,9 @@ public class Select {
 				id += dados.charAt(i);
 				cont++;
 				
+				
 			}
-			else if(cont == 6){
+			else if((cont == 6) && (dados.charAt(i) != '0')){
 				
 				lista1.add(id);
 				idResult = id;
@@ -57,19 +58,22 @@ public class Select {
 				getInformation();
 				nome = "";
 				id = "";
-				contAux = cont;
+				//contAux = cont;
 				cont = 0;
 				i = i-1;
 			}
 			
 			else{
 				nome += dados.charAt(i);
+				if(cont == 6){
+					contAux++;
+				}
 			}	
 		}
 		//System.out.println(nome+ " ");
-		//for (int i = 0; i < lista.size(); i++) {
-		//	System.out.println(lista1.get(i)+","+lista.get(i));
-		//}
+		for (int i = 0; i < lista.size(); i++) {
+			System.out.println(lista1.get(i)+","+lista.get(i));
+		}
 	}
 	
 	public ObservableList<Table_View> getInformation(){
