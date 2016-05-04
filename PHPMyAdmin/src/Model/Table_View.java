@@ -1,10 +1,12 @@
 package Model;
 
 public class Table_View {
-	private String id, nome;
+	private String nome;
+	private String id;
 	
 	public Table_View(){
-		
+		this.nome = "";
+		this.id = "";
 	}
 	
 	public Table_View(String id, String nome) {
@@ -28,9 +30,4 @@ public class Table_View {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public String toString(){
-		return this.getId()+" "+this.getNome();
-	}
-	
 }

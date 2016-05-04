@@ -66,14 +66,14 @@ public class Screen_Search extends Application{
 					root.getChildren().addAll(text_Search, lbError,button_Run);
 					stage_Search.show();
 				}
-				else if((!testRequest[0].equalsIgnoreCase("create")) || (!testRequest[0].equalsIgnoreCase("select")) ||
+				/*else if((!testRequest[0].equalsIgnoreCase("create")) || (!testRequest[0].equalsIgnoreCase("select")) ||
 						(!testRequest[0].equalsIgnoreCase("update")) || (!testRequest[0].equalsIgnoreCase("remove")) ||
 						(!testRequest[0].equalsIgnoreCase("insert")) || (!testRequest[1].equalsIgnoreCase("table")) ||
 						(!testRequest[0].equalsIgnoreCase("into"))){
 					root.getChildren().clear();
 					root.getChildren().addAll(text_Search, lbError,button_Run);
 					stage_Search.show();
-				}
+				}*/
 				else{
 					try {
 						screen_Result.start(stage_Search);

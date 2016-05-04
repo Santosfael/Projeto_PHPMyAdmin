@@ -3,8 +3,12 @@ package Model;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Select {
-	
+	private static String idResult = "", nomeResult = "";
+	private static ObservableList<Table_View> informationDB;
 	Manipulate_File manipulate = new Manipulate_File();
 	
 	public Select(){
@@ -12,13 +16,15 @@ public class Select {
 	}
 	
 	public void takeInformation(String information){
+		informationDB = FXCollections.observableArrayList();
 		ArrayList<String> lista1 = new ArrayList();
 		ArrayList<String> lista = new ArrayList();
 		Table_View teste = new Table_View();
 		String[] dates = null;
+		String id = "", nome = "";
 		int cont = 0, contAux = 0;
 		String dados = "";
-		String id = "", nome = "";
+		
 		System.out.println(information);
 		dates = information.split(" ");
 		if(dates[3].equalsIgnoreCase("cliente")){
@@ -41,8 +47,14 @@ public class Select {
 				
 			}
 			else if(cont == 6){
+				
 				lista1.add(id);
+				idResult = id;
+				
 				lista.add(nome);
+				nomeResult = nome;
+				informationDB.add(new Table_View(idResult, nomeResult));
+				getInformation();
 				nome = "";
 				id = "";
 				contAux = cont;
@@ -55,8 +67,18 @@ public class Select {
 			}	
 		}
 		//System.out.println(nome+ " ");
-		for (int i = 0; i < lista.size(); i++) {
-			System.out.println(lista1.get(i)+","+lista.get(i));
-		}
+		//for (int i = 0; i < lista.size(); i++) {
+		//	System.out.println(lista1.get(i)+","+lista.get(i));
+		//}
+	}
+	
+	public ObservableList<Table_View> getInformation(){
+		ObservableList<Table_View> information = FXCollections.observableArrayList();
+		//while(true){
+			//information.add(new Table_View(idResult, nomeResult));
+		information = informationDB;
+			return information;
+		//}
+		
 	}
 }

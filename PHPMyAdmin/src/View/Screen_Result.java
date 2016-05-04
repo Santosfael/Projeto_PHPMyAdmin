@@ -1,6 +1,10 @@
 package View;
 
+import Model.Select;
+import Model.Table_View;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -18,9 +23,10 @@ public class Screen_Result extends Application{
 	private VBox root = new VBox(10);
 	private HBox root_Button = new HBox(20);
 	private Scene scene_Result = new Scene(root,600,420);
-	private final TableView table_View = new TableView();
+	private TableView<Table_View> table_View;
 	private Button button_Return = new Button("Voltar");
 	private Button button_Exit = new Button("Sair");
+	Select select = new Select();
 	public Screen_Result() {
 		
 	}
@@ -30,18 +36,21 @@ public class Screen_Result extends Application{
 		
 		root.setAlignment(Pos.TOP_CENTER);
 		
-		Label label_Title = new Label("Informaï¿½ï¿½es do resultado");
+		Label label_Title = new Label("Resultado");
 		label_Title.setFont(new Font("Arial",20));
 		
-		table_View.setVisible(true);
+		TableColumn<Table_View, String> colunn_ID = new TableColumn<>("ID");
+		colunn_ID.setMinWidth(100);
+		colunn_ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
 		
-		TableColumn colunn_ID = new TableColumn<>("ID");
-		TableColumn colunn_Nome = new TableColumn<>("Nome");
-		TableColumn colunn_Info = new TableColumn<>("Informalï¿½ï¿½o");
-		
+		TableColumn<Table_View, String> colunn_Nome = new TableColumn<>("Nome");
+		//colunn_Nome.setMinWidth(100);
+		colunn_Nome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
+		//TableColumn colunn_Info = new TableColumn<>("Informação");
 		//Fim das Colunas
-		 
-		table_View.getColumns().addAll(colunn_ID, colunn_Nome, colunn_Info);
+		table_View = new TableView<>();
+		table_View.setItems(select.getInformation());
+		table_View.getColumns().addAll(colunn_ID, colunn_Nome);
 		
 		
 		stage_Result.setTitle("Resultados");
