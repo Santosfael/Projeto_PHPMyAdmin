@@ -21,7 +21,7 @@ public class Insert {
 		
 		
 		get_Text = text.split(" ");
-		//get_Information = information.split(" ");
+		get_Information = text.split("\"");
 		
 		if((information != null) && (text != null)){
 			nameFile = get_Text[2];
@@ -57,6 +57,7 @@ public class Insert {
 				}
 				
 				for (int i = cont; i < get_Text.length-1; i++) {
+					
 					if(get_Text[i].equals(",")){
 					
 					}
@@ -64,19 +65,17 @@ public class Insert {
 						cont1++;
 					}
 
-					if((cont1 > 0) && (!get_Text[i].equals("\""))){
+					if((cont1 > 0) && (!get_Text[i].equals("\"")) && (get_Text[i].length() > 0) ){
 						cont2++;
+						
 						if(cont2 == 1){
 							dataInformation += get_Text[i];
 						}
 						else{
-
+							
 							dataInformation += " "+get_Text[i];
 							
 						}
-					}
-					else{
-						dataInformation += "";
 					}
 				}
 				white_file.write_File(nameFile, dataInformation);

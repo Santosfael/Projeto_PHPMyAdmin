@@ -39,17 +39,19 @@ public class Screen_Result extends Application{
 		Label label_Title = new Label("Resultado");
 		label_Title.setFont(new Font("Arial",20));
 		
-		TableColumn<Table_View, String> colunn_ID = new TableColumn<>("ID");
-		colunn_ID.setMinWidth(100);
-		colunn_ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		//TableColumn<Table_View, String> colunn_Info = new TableColumn<>("Informação");
+		//colunn_Info.setCellValueFactory(new PropertyValueFactory<>("Informação"));
 		
-		TableColumn<Table_View, String> colunn_Nome = new TableColumn<>("Nome");
-		//colunn_Nome.setMinWidth(100);
-		colunn_Nome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
-		//TableColumn colunn_Info = new TableColumn<>("Informa��o");
+		TableColumn<Table_View, String> colunn_ID = new TableColumn<Table_View, String>("ID");
+		colunn_ID.setCellValueFactory(new PropertyValueFactory<Table_View, String>("id"));
+		
+		TableColumn<Table_View, String> colunn_Nome = new TableColumn<Table_View, String>("Nome");
+		colunn_Nome.setCellValueFactory(new PropertyValueFactory<Table_View, String>("nome"));
+		//TableColumn colunn_Info = new TableColumn<>("Informa��o");
 		//Fim das Colunas
+		
 		table_View = new TableView<>();
-		table_View.setItems(select.getInformation());
+		table_View.setItems(FXCollections.observableArrayList(select.getInformation()));
 		table_View.getColumns().addAll(colunn_ID, colunn_Nome);
 		
 		
